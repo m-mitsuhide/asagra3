@@ -7,13 +7,14 @@
     "dev": "concurrently \"nodemon cron\" \"livereload www\" \"nodemon server\"",
     "create": "db-migrate create",
     "migrate": "node migrate",
-    "start": "node migrate && node server",
+    "start": "node migrate && concurrently \"node cron\" \"node server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "m-mitsuhide <m.mitsuhide@amatelus.com>",
   "license": "MIT",
   "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cron": "^1.3.0",

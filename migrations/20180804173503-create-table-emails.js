@@ -14,31 +14,28 @@ exports.setup = function(options, seedLink) {
   seed = seedLink;
 };
 
-exports.up = db => db.createTable('chartdata', {
+exports.up = db => db.createTable('emails', {
   id: {
     type: 'int',
     autoIncrement: true,
     primaryKey: true,
   },
-  time: {
-    type: 'timestamp',
+  email: {
+    type: 'string',
+    length: 255,
     unique: true,
   },
-  openBid: {
-    type: 'int',
+  deleted: {
+    type: 'boolean',
+    defaultValue: false,
   },
-  closeBid: {
-    type: 'int',
-  },
-  highBid: {
-    type: 'int',
-  },
-  lowBid: {
-    type: 'int',
+  created: {
+    type: 'timestamp',
+    defaultValue: new String('now()'),
   },
 });
 
-exports.down = db => db.dropTable('chartdata');
+exports.down = db => db.dropTable('emails');
 
 exports._meta = {
   "version": 1
